@@ -1,0 +1,27 @@
+[tool.poetry]
+name = "news-scrape"
+version = "0.1.0"
+description = ""
+
+authors = [
+            "tinalu <tina.lu2427@gmail.com>"
+            "rayye1 <yer@purdue.edu>",
+            "keobkeig <rxue40@stuy.edu>",
+        ]
+readme = "README.md"
+packages = [{include = "news_scrape"}]
+
+[tool.poetry.dependencies]
+python = "^3.10"
+bs4 = "^0.0.1"
+selenium = "^4.10.0"
+pandas = "^2.0.3"
+datetime = "^5.1"
+requests = "^2.31.0"
+flask = "^2.3.2"
+tabulate = "^0.9.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"

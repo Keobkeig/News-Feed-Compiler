@@ -1,0 +1,121 @@
+
+<!DOCTYPE html
+<html lang="en">
+    <head>
+        <title> Table </title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+            body {
+                margin: 0;
+                background: #ecf0f3;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                place-items: center;
+                font-family: poppins;
+            }
+    
+            .container {
+                position: relative;
+                border-radius: 20px;
+                padding: 40px;
+                box-sizing: border-box;
+                background: #ecf0f3;
+                box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+            }
+            
+            h1 {
+                margin-bottom: 20px;
+            }
+    
+            a {
+                color: black;
+            }
+    
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                max-width: 800px;
+                margin-bottom: 20px;
+            }
+            
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            th {
+                background-color: #EDEDED;
+            }
+
+         
+            .tags-container {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .tags {
+                white-space: nowrap;
+                animation: scrollTags 20s linear infinite; /* Adjust the animation duration as needed */
+            }
+
+            .tag {
+                background: #ddd;
+                padding: 5px 10px;
+                margin: 5px;
+                font-size: 14px;
+                display: inline-block;
+            }
+
+            /* CSS Animation for scrolling tags */
+            @keyframes scrollTags {
+                0% {
+                    transform: translateX(100%);
+                }
+                100% {
+                    transform: translateX(-100%);
+                }
+            }
+        </style>              
+    </head>
+    <body>
+        <div class="container">
+            <h1> News for the Week!</h1>
+            <table>
+                <tr>
+                    {% for col in column_names %}
+                    <th>{{col}}</th>
+                    {% endfor %}
+                </tr>
+                {% for row, idx in zip(row_data, range(row_data|length)) %}
+                <tr>
+                    {% for col, row_ in zip(column_names, row) %}
+                    {% if col == link_column %}
+                    <td>
+                        <button type="submit" value={{ row_ }} name="person_id" form="patient_form" class="patient_button">
+                            {{ row_ }}
+                        </button>
+                    </td>
+                    {% else %}
+                    <td><a href={{url_for('find_info' ,news_id=idx)}}>{{row_}}</a></td>
+                    {% endif %}
+                    {% endfor %}
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <div class="tags-container">
+            <div class="tags">
+                {% for tag, count in popular_tags %}
+                <div class="tag">{{tag}} ({{count}})</div>  
+                {% endfor %}
+            </div>
+        </div>
+    </body>
+</html>

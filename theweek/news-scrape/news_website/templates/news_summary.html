@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> Table </title>   
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;900&display=swap');
+
+            body {
+                margin: 0;
+                background: #ecf0f3;
+                display: flex;
+                align-items: center;
+                text-align: center;
+                justify-content: center;
+                place-items: center;
+                font-family: poppins;
+            }
+    
+            .container {
+                position: relative;
+                border-radius: 20px;
+                padding: 40px;
+                box-sizing: border-box;
+                background: #ecf0f3;
+                box-shadow: 14px 14px 20px #cbced1, -14px -14px 20px white;
+            }
+            
+            h1 {
+                margin-bottom: 20px;
+            }
+    
+            a {
+                color: black;
+            }
+    
+            table {
+                border-collapse: collapse;
+                width: 100%;
+                max-width: 800px;
+                margin-bottom: 20px;
+            }
+            
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+            
+            th {
+                background-color: #EDEDED;
+            }
+        </style>            
+    </head>
+    <body>
+        <div align="center">
+            <table>
+                <h1>
+                <!--Displaying the converted table-->
+                     {% for table in tables %}
+                    <!--<h2>{{titles[loop.index]}}</h2>-->                            
+                    {{ table|safe }}
+                    {% endfor %}     
+                </h1> 
+            </table>
+            <a href="/">Back</a>
+        </div>
+        
+    </body>
+</html>
